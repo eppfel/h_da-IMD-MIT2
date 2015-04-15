@@ -1,12 +1,10 @@
 ArrayList<Kaefer> liste = new ArrayList<Kaefer>();
 
 void setup() {
-  
+ 
   size(1920, 1080);
   
   // owi kaefer
-  for(int i=0; i<2; i++) {
-  
   liste.add(new OwiKaefer1());
   liste.add(new OwiKaefer2());
   liste.add(new Wanze1());
@@ -29,7 +27,6 @@ void setup() {
   liste.add( new DaviKaefer());
   liste.add( new IsabelKaefer());
   liste.add( new OwiKaeferNeumayr());
-  }
 }
 
 void draw() {
