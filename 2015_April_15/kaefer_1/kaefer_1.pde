@@ -27,6 +27,10 @@ void setup() {
   liste.add( new DaviKaefer());
   liste.add( new IsabelKaefer());
   liste.add( new OwiKaeferNeumayr());
+  liste.add( new CelineKaefer());
+  liste.add( new RominaKaefer2());
+  
+  
 }
 
 void draw() {
