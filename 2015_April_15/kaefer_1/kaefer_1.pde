@@ -5,6 +5,8 @@ void setup() {
   size(1920, 1080);
   
   // owi kaefer
+  for(int i=0; i<2; i++) {
+  
   liste.add(new OwiKaefer1());
   liste.add(new OwiKaefer2());
   liste.add(new Wanze1());
@@ -21,17 +23,18 @@ void setup() {
   liste.add( new Kaefer2());
   liste.add( new dgKaefer());
   liste.add( new NadjaKaefer());
-  
+  liste.add( new LisaKaefer());
+  liste.add( new CarolinKaefer());
+  liste.add( new NatKaefer());
+  liste.add( new DaviKaefer());
+  liste.add( new IsabelKaefer());
+  liste.add( new OwiKaeferNeumayr());
+  }
 }
 
 void draw() {
   
   background(255);
   for (Kaefer k : liste) k.draw();
-}
-
-void keyPressed() {
-  
-  liste.add(new OwiKaefer2());
 }
 

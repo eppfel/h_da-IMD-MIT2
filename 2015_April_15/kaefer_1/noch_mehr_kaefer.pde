@@ -640,3 +640,433 @@ class NadjaKaefer extends Kaefer {
   }
 }
 
+class LisaKaefer extends Kaefer {
+  float noiseP;
+  LisaKaefer() {
+ 
+     super();
+     speed = random(0.5, 8.0);
+     noiseP = 0;
+     direction.rotate(random(HALF_PI));
+     direction.mult(speed);
+  
+  }
+  
+  void draw() {
+
+    // update position
+        noiseP += 0.0002;
+    direction.rotate((noise(noiseP)-0.5)*0.05);
+    position.add(direction);
+    checkBorder();
+    
+    // draw
+    fill(#B42639);
+    ellipse(position.x, position.y, 40, 40);
+    
+    // mittellinie
+    PVector m = new PVector(direction.x, direction.y);
+    m.normalize();
+    line(position.x-m.x*20,
+    position.y-m.y*20, 
+    position.x+m.x*20, 
+    position.y+m.y*20
+    );
+    
+    // fühler
+    float r =random(255);
+    float g =random(255);
+    float b =random(255);
+    stroke(r,g,b);
+    strokeWeight(5);
+    PVector f1 = new PVector(direction.x, direction.y);
+    f1.normalize();
+    f1.rotate(-0.5);
+    line(position.x+f1.x*20,
+    position.y+f1.y*20, 
+    position.x+f1.x*35, 
+    position.y+f1.y*35
+    );
+    f1.rotate(1);
+    line(position.x+f1.x*20,
+    position.y+f1.y*20, 
+    position.x+f1.x*35, 
+    position.y+f1.y*35
+    );
+    stroke(0,0,0);
+    strokeWeight(1);
+  }
+  
+  void checkBorder() {
+    
+    if(position.x<0 || position.x>width) {
+      direction.x *= -1;
+    }
+    if(position.y<0 || position.y>height){
+    direction.y *= -1;
+    }
+  }
+}
+
+class CarolinKaefer extends Kaefer {
+ 
+  float noiseP;
+ 
+  
+  CarolinKaefer() {
+ 
+    super();
+    speed = random(0.5, 4.0);
+    noiseP = 0;
+    direction.rotate(random(TWO_PI));
+    direction.mult(speed);
+  }
+ 
+ 
+  void draw() {
+ 
+    // update position
+    noiseP += 0.02;
+    direction.rotate((noise(noiseP)-0.5)*0.05);
+    position.add(direction);
+    checkBorder();
+ 
+    // draw
+    float r = random(255);
+    float g = random(255);
+    float b = random(255);
+    fill(r,g,b);
+    strokeWeight(3);
+    ellipse(position.x, position.y, 30, 30);
+   
+ 
+ 
+    // mittellinie
+    PVector m = new PVector(direction.x, direction.y);
+    m.normalize();
+    strokeWeight(3);
+    line(position.x-m.x*15,
+    position.y-m.y*15,
+    position.x+m.x*15,
+    position.y+m.y*15
+      );
+ 
+    // fühler
+    PVector f1 = new PVector(direction.x, direction.y);
+    f1.normalize();
+    f1.rotate(-0.5);
+    strokeWeight(3);
+    line(position.x+f1.x*15,
+    position.y+f1.y*15,
+    position.x+f1.x*30,
+    position.y+f1.y*30
+      );
+    f1.rotate(1);
+    line(position.x+f1.x*15,
+    position.y+f1.y*15,
+    position.x+f1.x*30,
+    position.y+f1.y*30
+      );
+      strokeWeight(1);
+  }
+ 
+  void checkBorder() {
+ 
+    if (position.x<0 || position.x>width) direction.x *= -1;
+    if (position.y<0 || position.y>height) direction.y *= -1;
+  }
+}
+
+class NatKaefer extends Kaefer {
+NatKaefer() {
+speed = 6;
+direction.rotate(2);
+direction.mult(speed);
+}
+
+void draw(){
+position.add(direction);
+direction.rotate(0.02);
+checkBorder();
+
+stroke(#FFA600);
+fill(#FFF300);
+ellipse(position.x, position.y, 20, 20);
+
+// mittellinie
+PVector m = new PVector(direction.x, direction.y);
+m.normalize();
+line(position.x-m.x*10,
+position.y-m.y*10, 
+position.x+m.x*10, 
+position.y+m.y*10
+);
+
+// fühler
+PVector f1 = new PVector(direction.x, direction.y);
+f1.normalize();
+f1.rotate(-0.5);
+line(position.x+f1.x*10,
+position.y+f1.y*10, 
+position.x+f1.x*20, 
+position.y+f1.y*20
+);
+f1.rotate(1);
+line(position.x+f1.x*10,
+position.y+f1.y*10, 
+position.x+f1.x*20, 
+position.y+f1.y*20
+);
+
+}
+void checkBorder() {
+
+if(position.x<0 || position.x>width) direction.x *= -1;
+if(position.y<0 || position.y>height) direction.y *= -1;
+}
+}
+
+class DaviKaefer extends Kaefer {
+  
+  PImage[] images;
+  int imageCount;
+  int frame;
+  float noiseP;
+ 
+  DaviKaefer() {
+ 
+     super();
+     speed = 1.0;
+     noiseP = 0;
+     direction.rotate(random(TWO_PI));
+     direction.mult(speed);
+     
+    imageCount = 4;
+    images = new PImage[imageCount];
+    frame = (int) random(imageCount);
+    
+    for (int i = 0; i < imageCount; i++) {
+      // Use nf() to number format 'i' into five digits
+      String filename = "_kaefer_" + nf(i, 5) + ".png";
+      images[i] = loadImage(filename);
+    }
+  }
+  
+  void draw() {
+
+    // update position
+    frame = (frame+1) % imageCount;
+    noiseP += 0.02;
+    direction.rotate((noise(noiseP)-0.5)*0.05);
+    position.add(direction);
+    checkBorder();
+    
+    PVector up = new PVector(0, -1);
+    float rotation = angle(up, direction);
+    
+    // draw
+    fill(255);
+    pushMatrix();
+    translate(position.x, position.y);
+    rotate(rotation);
+    image(images[frame], -images[frame].width/2, -images[frame].height/2);
+    popMatrix();
+    
+  }
+  
+  void checkBorder() {
+    
+    if(position.x<0 || position.x>width) direction.x *= -1;
+    if(position.y<0 || position.y>height) direction.y *= -1;
+  }
+  
+  float angle(PVector v1, PVector v2) {
+    float a = atan2(v2.y, v2.x) - atan2(v1.y, v1.x);
+    if (a < 0) a += TWO_PI;
+    return a;
+  }
+}
+
+class IsabelKaefer extends Kaefer {
+
+ IsabelKaefer() {
+
+    super();
+    speed = random(0.5, 2.1);
+    direction.rotate(sin(0.03));
+    direction.mult(speed);
+ }
+
+ void draw() {
+direction.rotate(sin(0.03));
+   // update position
+   position.add(direction);
+   checkBorder();
+
+   // draw
+   fill(100,5,50);
+   ellipse(position.x, position.y, 20, 20);
+
+   // mittellinie
+   stroke(255);
+   PVector m = new PVector(direction.x, direction.y);
+   m.normalize();
+   line(position.x-m.x*10,
+   position.y-m.y*10, 
+   position.x+m.x*10, 
+   position.y+m.y*10
+   );
+
+   // fühler
+   stroke(0,50,50);
+   PVector f1 = new PVector(direction.x, direction.y);
+   f1.normalize();
+   f1.rotate(-0.5);
+   line(position.x+f1.x*10,
+   position.y+f1.y*10, 
+   position.x+f1.x*20, 
+   position.y+f1.y*20
+   );
+   f1.rotate(1);
+   line(position.x+f1.x*10,
+   position.y+f1.y*10, 
+   position.x+f1.x*20, 
+   position.y+f1.y*20
+   );
+ }
+ 
+ void checkBorder() {
+    
+    if(position.x<0 || position.x>width) direction.x *= -1;
+    if(position.y<0 || position.y>height) direction.y *= -1;
+  }
+  
+  float angle(PVector v1, PVector v2) {
+    float a = atan2(v2.y, v2.x) - atan2(v1.y, v1.x);
+    if (a < 0) a += TWO_PI;
+    return a;
+  }
+}
+
+class RominaKaefer2 extends Kaefer {
+  
+  PImage[] images;
+  int imageCount;
+  int frame;
+  float noiseP;
+  
+  RominaKaefer2() {
+ 
+     super();
+     speed = 2.0;
+     noiseP = 0;
+     direction.rotate(random(TWO_PI));
+     direction.mult(speed);
+     
+    imageCount = 1;
+    images = new PImage[imageCount];
+    frame = (int) random(imageCount);
+    
+    for (int i = 0; i < imageCount; i++) {
+      // Use nf() to number format 'i' into five digits
+      String filename = "imgKaefer.png";
+      images[i] = loadImage(filename);
+    }
+  }
+  
+  void draw() {
+
+    // update position
+    frame = (frame+1) % imageCount;
+    noiseP += 0.02;
+    direction.rotate((noise(noiseP)-0.5)*0.05);
+    position.add(direction);
+    checkBorder();
+    
+    PVector up = new PVector(0, -1);
+    float rotation = angle(up, direction);
+    
+    // draw
+    fill(255);
+    pushMatrix();
+    translate(position.x, position.y);
+    rotate(rotation);
+    image(images[frame], -images[frame].width/2, -images[frame].height/2);
+    popMatrix();
+    
+  }
+  
+  void checkBorder() {
+    
+    if(position.x<0 || position.x>width) direction.x *= -1;
+    if(position.y<0 || position.y>height) direction.y *= -1;
+  }
+  
+  float angle(PVector v1, PVector v2) {
+    float a = atan2(v2.y, v2.x) - atan2(v1.y, v1.x);
+    if (a < 0) a += TWO_PI;
+    return a;
+  }
+}
+
+
+class OwiKaeferNeumayr extends Kaefer {
+
+PImage[] images;
+int imageCount;
+int frame;
+float noiseP;
+
+OwiKaeferNeumayr() {
+
+super();
+speed = 2.0;
+noiseP = 0;
+direction.rotate(random(TWO_PI));
+direction.mult(speed);
+
+imageCount = 12;
+images = new PImage[imageCount];
+frame = (int) random(imageCount);
+
+for (int i = 0; i < imageCount; i++) {
+// Use nf() to number format 'i' into five digits
+String filename = "bug_" + nf(i, 5) + ".gif";
+images[i] = loadImage(filename);
+}
+}
+
+void draw() {
+
+// update position
+frame = (frame+1) % imageCount;
+noiseP += 0.02;
+direction.rotate((noise(noiseP)-0.5)*0.05);
+position.add(direction);
+checkBorder();
+
+PVector up = new PVector(0, -1);
+float rotation = angle(up, direction);
+
+// draw
+fill(255);
+pushMatrix();
+translate(position.x, position.y);
+rotate(rotation);
+image(images[frame], -images[frame].width/2, -images[frame].height/2);
+popMatrix();
+
+}
+
+void checkBorder() {
+
+if(position.x<0 || position.x>width) direction.x *= -1;
+if(position.y<0 || position.y>height) direction.y *= -1;
+}
+
+float angle(PVector v1, PVector v2) {
+float a = atan2(v2.y, v2.x) - atan2(v1.y, v1.x);
+if (a < 0) a += TWO_PI;
+return a;
+}
+}
