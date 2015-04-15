@@ -13,7 +13,7 @@ class Wanze1 extends Kaefer {
      direction.rotate(random(TWO_PI));
      direction.mult(speed);
      
-    imageCount = 10;
+    imageCount = 11;
     images = new PImage[imageCount];
     frame = (int) random(imageCount);
     
