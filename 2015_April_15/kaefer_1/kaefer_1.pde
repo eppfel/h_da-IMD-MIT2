@@ -1,14 +1,14 @@
 ArrayList<Kaefer> liste = new ArrayList<Kaefer>();
 
 void setup() {
- 
-  size(1920, 1080);
-  
+
+  size(displayWidth, displayHeight, P2D);
+
   // owi kaefer
   liste.add(new OwiKaefer1());
   liste.add(new OwiKaefer2());
   liste.add(new Wanze1());
-  
+
   // studenten kaefer
   liste.add( new marienkaefer());
   liste.add( new OwiKaefer3());
@@ -29,13 +29,19 @@ void setup() {
   liste.add( new OwiKaeferNeumayr());
   liste.add( new CelineKaefer());
   liste.add( new RominaKaefer2());
-  
-  
+
+
 }
 
 void draw() {
-  
+
   background(255);
   for (Kaefer k : liste) k.draw();
+  fill(0, 102, 153);
+  text("fps: " + frameRate, 10, 30);
+}
+
+boolean sketchFullScreen() {
+  return true;
 }
 
