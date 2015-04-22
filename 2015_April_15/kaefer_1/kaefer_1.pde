@@ -13,10 +13,10 @@ for(int i=0; i<mult; i++) {
   //liste.add(new OwiKaefer1());
   //liste.add(new OwiKaefer2());
   //liste.add(new Wanze1());
-  liste.add(new TraceKaefer());
+  //liste.add(new TraceKaefer());
   
-
   // studenten kaefer
+  liste.add( new oenderkaefer());
   liste.add( new MariaKaefer());
   liste.add( new marienkaefer());
   liste.add( new OwiKaefer3());
@@ -37,13 +37,17 @@ for(int i=0; i<mult; i++) {
   liste.add( new OwiKaeferNeumayr());
   liste.add( new CelineKaefer());
   liste.add( new RominaKaefer2());
-  
   liste.add( new MariasKaefer());
   liste.add( new FabioMathesKaefer());
   liste.add( new LuluKaeferKakuna());
   liste.add( new AnjaKaefer());
   liste.add( new Ilkaefer());
+  liste.add( new neuerKaefer());
+  liste.add( new HongkiFly());
+  liste.add( new SimoneKaefer());
+  liste.add( new kaefer3());
   
+ 
 }
 
 }
