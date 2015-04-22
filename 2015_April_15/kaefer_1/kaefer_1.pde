@@ -9,14 +9,15 @@ int mult = 1; // try 40 ... = 880 kaefer (runs with 30fps on newer iMac)
 
 for(int i=0; i<mult; i++) {
 
-
-
   // owi kaefer
-  liste.add(new OwiKaefer1());
-  liste.add(new OwiKaefer2());
-  liste.add(new Wanze1());
+  //liste.add(new OwiKaefer1());
+  //liste.add(new OwiKaefer2());
+  //liste.add(new Wanze1());
+  liste.add(new TraceKaefer());
+  
 
   // studenten kaefer
+  liste.add( new MariaKaefer());
   liste.add( new marienkaefer());
   liste.add( new OwiKaefer3());
   liste.add( new VanessaKaefer());
@@ -36,6 +37,13 @@ for(int i=0; i<mult; i++) {
   liste.add( new OwiKaeferNeumayr());
   liste.add( new CelineKaefer());
   liste.add( new RominaKaefer2());
+  
+  liste.add( new MariasKaefer());
+  liste.add( new FabioMathesKaefer());
+  liste.add( new LuluKaeferKakuna());
+  liste.add( new AnjaKaefer());
+  liste.add( new Ilkaefer());
+  
 }
 
 }
@@ -45,8 +53,9 @@ void draw() {
   background(255);
   for (Kaefer k : liste) k.draw();
   fill(0, 102, 153);
-  text("fps: " + frameRate, 10, 30);
-  text("kaefer: " + liste.size(), 10, 50);
+  textSize(48);
+  text("fps: " + (int)frameRate, 20, 80);
+  text("kaefer: " + liste.size(), 20, 140);
 }
 
 boolean sketchFullScreen() {
