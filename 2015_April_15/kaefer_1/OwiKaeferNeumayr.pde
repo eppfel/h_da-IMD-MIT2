@@ -1,16 +1,18 @@
-class OwiKaefer2 extends Kaefer {
+//Daniel Neumayr 739092
+
+class OwiKaeferNeumayr extends Kaefer {
   
   PImage[] images;
   int imageCount;
   int frame;
   float noiseP;
   
-  OwiKaefer2() {
+  OwiKaeferNeumayr() {
  
      super();
      speed = 2.0;
      noiseP = 0;
-     direction.rotate(random(TWO_PI));
+     direction.rotate(random(-PI));
      direction.mult(speed);
      
     imageCount = 12;
@@ -29,7 +31,7 @@ class OwiKaefer2 extends Kaefer {
     // update position
     frame = (frame+1) % imageCount;
     noiseP += 0.02;
-    direction.rotate((noise(noiseP)-0.5)*0.05);
+    direction.rotate((noise(noiseP)-0.5)*0.02);
     position.add(direction);
     checkBorder();
     
