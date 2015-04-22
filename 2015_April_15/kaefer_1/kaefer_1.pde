@@ -1,7 +1,7 @@
 ArrayList<Kaefer> liste = new ArrayList<Kaefer>();
 
 void setup() {
-<<<<<<< Updated upstream
+
 
   size(displayWidth, displayHeight, P2D);
 
@@ -9,11 +9,8 @@ int mult = 1; // try 40 ... = 880 kaefer (runs with 30fps on newer iMac)
 
 for(int i=0; i<mult; i++) {
 
-=======
- 
-  size(1200, 700);
-  
->>>>>>> Stashed changes
+
+
   // owi kaefer
   liste.add(new OwiKaefer1());
   liste.add(new OwiKaefer2());
