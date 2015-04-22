@@ -53,6 +53,9 @@ class OwiKaefer1 extends Kaefer {
     }
     
     // update position
+    boolean somethingInFront = foundObstacleAhead();
+    
+    if(!somethingInFront) {
     if(hasTarget) {
       
       // forget my target after 30 steps
@@ -76,9 +79,18 @@ class OwiKaefer1 extends Kaefer {
       }
     }
     
-    
     if(!foundATarget) {
       // no target ...just idle around
+      noiseP += 0.02;
+      direction.rotate((noise(noiseP)-0.5)*0.05);
+    }
+    
+    } else {
+      
+      // theres a wall in front...
+      // what to do ?
+      
+      // ...just idle around
       noiseP += 0.02;
       direction.rotate((noise(noiseP)-0.5)*0.05);
     }
@@ -117,6 +129,54 @@ class OwiKaefer1 extends Kaefer {
     );
     
   }
+  boolean foundObstacleAhead() {
+  
+    // mouth position
+    PVector mouth = new PVector(direction.x, direction.y);
+    mouth.normalize();
+    mouth.mult(10);
+    mouth.add(position);
+    
+    // check obstacles in front
+    float checkDistance = 60;
+    float checkSteps = 20;
+    PVector checkDirection = new PVector(direction.x, direction.y);
+    checkDirection.normalize();
+    checkDirection.mult(checkDistance/checkSteps);
+    boolean  obstacleInFront = false;
+    PVector frontCheck = new PVector(mouth.x, mouth.y);
+    for(int i=0; i<checkSteps; i++) {
+      
+      frontCheck.add(checkDirection);
+      int searchX = (int)frontCheck.x;
+      int searchY = (int)frontCheck.y;
+      color test = map.get(searchX, searchY);
+      if(test == obstacle) {
+        hasTarget = false;
+        obstacleInFront = true;
+      }
+    }
+    
+    boolean  obstacleInBack = false;
+    frontCheck = new PVector(mouth.x, mouth.y);
+    for(int i=0; i<checkSteps; i++) {
+      
+      frontCheck.sub(checkDirection);
+      int searchX = (int)frontCheck.x;
+      int searchY = (int)frontCheck.y;
+      color test = map.get(searchX, searchY);
+      if(test == obstacle) {
+        hasTarget = false;
+        obstacleInBack = true;
+      }
+    }
+    
+    
+    
+    return obstacleInFront || obstacleInBack;
+  
+  }
+  
   boolean searchSomethingGreen() {
    
      boolean foundIt = false;
@@ -153,7 +213,7 @@ class OwiKaefer1 extends Kaefer {
     if(foundGreenInNearRange) return true;
     
     // far range monte-carlo search
-    int farDistanceRange = 200; 
+    int farDistanceRange = 50; 
     int farNumTests = 32;
     for(int i=0; i<farNumTests; i++) {
       int r = farDistanceRange;
