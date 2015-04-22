@@ -20,18 +20,20 @@ class OwiKaefer1 extends Kaefer {
     mouth.add(position);
     
     boolean eat = false;
-    if(map.get((int)mouth.x, (int)mouth.y)==color(0)) direction.rotate(PI);
-    if(map.get((int)mouth.x, (int)mouth.y)==color(0,255,18)) eat = true;
+    color test = map.get((int)mouth.x, (int)mouth.y);
+      float red = test >> 16 & 0xFF;
+      float green = test >> 8 & 0xFF;
+      float blue = test & 0xFF;
+    if(test==color(0)) direction.rotate(PI);
+    if(red<230 && green>50 && blue<230) eat = true;
     if(eat) {
       
-      if(frameCount%10==0) {
+      if(frameCount%5==0) {
         
         color white = color(255);
         int biteX = (int)mouth.x;
         int biteY = (int)mouth.y;
-        for(int i=0; i<60; i++) {
-          map.set(biteX+(int)random(-4, 4), biteY+(int)random(-4, 4), white);
-        }
+          map.set(biteX, biteY, white);
         noiseP += 0.2;
         direction.rotate((noise(noiseP)-0.5)*0.5);
       }

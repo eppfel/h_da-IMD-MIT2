@@ -38,7 +38,7 @@ class OwiKaefer1 extends Kaefer {
       float green = test >> 8 & 0xFF;
       float blue = test & 0xFF;
     if(test==obstacle) direction.rotate(PI);
-    else if(red<200 && green>200 && blue<200) eat = true;
+    else if(red<230 && green>50 && blue<230) eat = true;
     if(eat) {
       
       if(frameCount%5==0) {
@@ -141,7 +141,7 @@ class OwiKaefer1 extends Kaefer {
       float green = test >> 8 & 0xFF;
       float blue = test & 0xFF;
       
-      if(red<200 && green>200 && blue<200) {
+      if(red<230 && green>50 && blue<230) {
         
         foundIt = true;
         foundGreenInNearRange = true;
@@ -163,7 +163,7 @@ class OwiKaefer1 extends Kaefer {
       float red = test >> 16 & 0xFF;
       float green = test >> 8 & 0xFF;
       float blue = test & 0xFF;
-      if(red<200 && green>200 && blue<200) {
+      if(red<230 && green>50 && blue<230) {
         
         foundIt = true;
         hasTarget = true;
