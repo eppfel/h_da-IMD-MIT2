@@ -7,7 +7,7 @@ void setup() {
   //size(displayWidth, displayHeight);
   //for(int i=0; i<20; i++) liste.add(new OwiKaefer1());
   
-  map = loadImage("test1.png");
+  map = loadImage("test2.png");
 }
 
 void draw() {
