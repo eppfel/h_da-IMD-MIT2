@@ -37,7 +37,12 @@ class OwiKaefer1 extends Kaefer {
       float red = test >> 16 & 0xFF;
       float green = test >> 8 & 0xFF;
       float blue = test & 0xFF;
-    if(test==obstacle) direction.rotate(PI);
+    if(test==obstacle) {
+      
+      position.sub(direction);
+      direction.rotate(PI/180.0*random(-180, 180));
+      //direction.rotate(PI);
+    } 
     else if(red<230 && green>50 && blue<230) eat = true;
     if(eat) {
       
@@ -118,6 +123,7 @@ class OwiKaefer1 extends Kaefer {
     );
     
   }
+
   
   boolean searchSomethingGreen() {
    
@@ -154,8 +160,67 @@ class OwiKaefer1 extends Kaefer {
     }
     if(foundGreenInNearRange) return true;
     
+    
+    // check obstacles in front
+    float checkDistance = 200;
+    float checkSteps = 32;
+    PVector checkDirection = new PVector(direction.x, direction.y);
+    checkDirection.normalize();
+    checkDirection.mult(checkDistance/checkSteps);
+    boolean  obstacleInFront = false;
+    PVector frontCheck = new PVector(mouth.x, mouth.y);
+    for(int i=0; i<checkSteps; i++) {
+      
+      frontCheck.add(checkDirection);
+      int searchX = (int)frontCheck.x;
+      int searchY = (int)frontCheck.y;
+      color test = map.get(searchX, searchY);
+      if(test == obstacle) {
+        hasTarget = false;
+        return false;
+      }
+      float red = test >> 16 & 0xFF;
+      float green = test >> 8 & 0xFF;
+      float blue = test & 0xFF;
+      if(red<230 && green>50 && blue<230) {
+        
+        foundIt = true;
+        hasTarget = true;
+        target.set(searchX, searchY);
+        targetMemory = 0;
+        return true;
+      }
+    }
+    
+    /*
+    
+    // near range monte-carlo search
+    int nearDistanceRange = 8; 
+    int nearNumTests = 32;
+    boolean foundGreenInNearRange = false;
+    for(int i=0; i<nearNumTests; i++) {
+      int r = nearDistanceRange;
+      int searchX = (int)mouth.x +(int)random(-r, r);
+      int searchY = (int)mouth.y +(int)random(-r, r);
+
+      color test = map.get(searchX, searchY);
+      float red = test >> 16 & 0xFF;
+      float green = test >> 8 & 0xFF;
+      float blue = test & 0xFF;
+      
+      if(red<230 && green>50 && blue<230) {
+        
+        foundIt = true;
+        foundGreenInNearRange = true;
+        hasTarget = true;
+        target.set(searchX, searchY);
+        targetMemory = 0;
+      }
+    }
+    if(foundGreenInNearRange) return true;
+    
     // far range monte-carlo search
-    int farDistanceRange = 200; 
+    int farDistanceRange = 50; 
     int farNumTests = 32;
     for(int i=0; i<farNumTests; i++) {
       int r = farDistanceRange;
@@ -173,6 +238,7 @@ class OwiKaefer1 extends Kaefer {
         targetMemory = 0;
       }
     }
+    */
     
     return foundIt;
   }
