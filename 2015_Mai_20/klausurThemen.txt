@@ -1,0 +1,35 @@
+Klausur Interaktive Simulation + Objektorientierte Programmierung
+
+	1.	Grundstrukturen Programmierung
+
+	1.	Funktionen (Parameter, Rückgabewert, Nutzen, Unterteilung
+	2.	Array: erstellen, auslesen, Zugriff per Iterator
+	3.	Loops: Iteration über Array, Abbruchbedingungen 
+	2.	Simulation 
+	1.	Simuation vs Animation
+	2.	Black Box vs. Opaque
+	3.	Warum Simulation?
+	4.	Was macht eine dynamiche Simulation aus?
+	5.	Vorteile Computersimulation
+	6.	Modellierung Wie?
+	7.	Causal Loop Diagramm lesen können 
+	3.	Software Allgemein - hm, nein, ganzen Punkt nicht 
+	1.	Anforderungen an Software
+	2.	GIT Vorteile
+	3.	Map pattern
+	4.	RGB HSV
+	5.	Vektoren 
+	4.	OOP 
+	1.	Class vs. Object
+	2.	Klassen: Name, Eigenschaften und Methoden
+	3.	Konstruktoren
+	4.	private/public/protected
+	5.	Objekt initieren
+	6.	Getter & Setter
+	7.	Relationen benennen können
+	1.	Vererbung
+	2.	Komposition
+	3.	Aggregation
+	8.	Relation programmieren können
+	9.	Hierarchie / Abstrakte Klasse
+	10.	mit UML ausdrücken oder lesen 
