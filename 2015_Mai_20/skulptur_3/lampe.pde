@@ -12,13 +12,27 @@ class lampe {
    radius = 20;
    animator = 0;
  }
- lampe(float x, float y, float z) { 
-  
+ 
+ lampe(float x, float y, float z) {
    positionX = x; positionY = y; positionZ = z;
    baseX = x; baseY = y; baseZ = z;
    radius = 20;
    seilLaenge = 500;
    animator = 0;
+ }
+  lampe(float w, float h) {
+    this(w, h, 100.0);
+ }
+ 
+ // getter
+ public float getPositionX() {
+   return positionX/100;
+ }
+ // setter
+ public boolean setPositionX(float newPos) {
+    positionX = newPos*100; 
+    if(positionX>10000) return false; 
+    else return true;
  }
   void show() {
     // animate
