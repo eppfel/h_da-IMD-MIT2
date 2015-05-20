@@ -16,13 +16,18 @@ class skulptur {
    // KLAUSUR - loop
    for(int i=0; i<anzahlX; i++) {
     for(int j=0; j<anzahlY; j++) {
-      alleLampen.add( 
-      new lampe(-startX+i*abstand,0, -
-      startZ +j*abstand) );
+      alleLampen.add(  new lampe(-startX+i*abstand, 0, -startZ +j*abstand) );
     }
    }  
   }
   void draw() {
+    
+    if(alleLampen.size()==0) { 
+      // ALARM! weil keine Lampe
+      println("ALARM! weil keine Lampe");
+      return;
+    }
+    
    for(int i=0; i<alleLampen.size(); i++) {
      // KLAUSUR - Array
     lampe L = alleLampen.get(i);   
