@@ -19,5 +19,5 @@ All solution files / examples for the course Media Informatics and Technology he
 * Processing OOP Tutorial https://processing.org/tutorials/objects/
 * „Objektorientierte Programmierung“, Bernhard Lahres, Gregor Rayman, Galileo Computing, ISBN 978-3-8362-1401-8 http://openbook.galileocomputing.de/oop/
 
-### Verschiedens
+### Verschiedenes
 * git - Der einfache Einstieg [rogerdudler.github.io/git-guide/](http://rogerdudler.github.io/git-guide/index.de.html)
