@@ -46,6 +46,7 @@ for(int i=0; i<mult; i++) {
   liste.add( new HongkiFly());
   liste.add( new SimoneKaefer());
   liste.add( new kaefer3());
+  liste.add( new dokikaefer());
   
  
 }
